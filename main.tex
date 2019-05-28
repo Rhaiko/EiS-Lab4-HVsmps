@@ -1,0 +1,159 @@
+\documentclass{article}
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}		% Graphics.
+\usepackage{color}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{xfrac}
+\usepackage{matlab-prettifier}
+\usepackage{amsmath}    
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{chemformula}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage[final]{pdfpages}
+\usepackage{pdflscape}
+
+% Force centering below figures.
+\usepackage[justification=centering]{caption}
+
+% Create a separate table for the appendix.
+\usepackage[toc]{appendix}
+\usepackage{etoc}
+
+% Table of Content has fast links to sections.
+\usepackage{hyperref}
+
+% Remove dots in table of contents.
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdot}{}
+
+% Page style.
+\usepackage[top=2cm, bottom=2cm, left = 2cm, right = 2cm]{geometry}
+\setlength{\parindent}{0pt}	% Disable indents.
+
+
+
+\begin{document}
+
+
+
+%----------------------------------------------------------------------------------------
+%	Title page.
+%----------------------------------------------------------------------------------------
+\input{chapters/titlepage.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENT.
+%----------------------------------------------------------------------------------------
+\newpage				% Start at new page.
+\pagenumbering{arabic}	% Page numbering reset & style.
+\renewcommand{\contentsname}{Table of Contents}
+
+\etocsetlevel{appendixplaceholder}{6}
+\tableofcontents		% Add table of content.
+\etocsetlevel{appendixplaceholder}{-1}
+
+
+%----------------------------------------------------------------------------------------
+%	PROCEDURE 1: CIRCUIT ANALYSIS.
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Circuit analysis}
+In this chapter the circuit is analyzed. These are the results from calculations and analysis. This has been done before the laboratory work. In appendix \ref{app:main-circuit} the circuit that is being analyzed and tested is shown.
+
+\input{chapters/1.1-individual.tex}
+\input{chapters/1.2-overall.tex}
+\input{chapters/1.3-requirements.tex}
+\input{chapters/1.4-test-procedure.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PROCEDURE 2: TESTING THE INDIVIDUAL PARTS OF THE SYSTEM.
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Testing the individual parts of the system}
+In this chapter the individual blocks/subsystems are tested and documented.
+
+\subsection{Safety}
+Disable the high voltage part of the circuit by disconnecting the voltage multiplying ladder from the transformer output. That is, remove capacitor C4.
+
+\subsection{Power supply}
+Connect the $\SI{5}{\volt}$ and the $\pm \SI{12}{\volt}$ supplies to the board but \textbf{NOT} the 30\,Volt supply!
+
+\input{chapters/2.3-oscillator.tex}
+\input{chapters/2.4-pulse-generator.tex}
+\input{chapters/2.5-Usample.tex}
+\input{chapters/2.6-power-control.tex}
+\input{chapters/2.7-control-switch.tex}
+\input{chapters/2.8-switch-transformer.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PROCEDURE 3: HIGH VOLTAGE SYSTEM TEST.
+%----------------------------------------------------------------------------------------
+\newpage
+\section{High voltage system test}
+In this chapter the high voltage power supply has been tested and documented.
+
+\subsection{Initial Conditions}
+Follow the procedure to make the board ready for the high voltage system test:
+\begin{enumerate}
+	\item Turn all the power supplies to the board off.
+	\item Remove the connection to the feedback pin between the resistors of $\SI{220}{\kilo\ohm}$ and $\SI{500}{\mega\ohm}$. 
+	\item Replace the capacitor ($C4$) between the transformer and the voltage cascade.
+	\item The rest of the settings should be the same as is in question 2.8.
+	\item Turn on the $\SI{5}{\volt}$ and $\pm\SI{12}{\volt}$ power supplies.
+\end{enumerate}
+
+\input{chapters/3.2-init-test.tex}
+\input{chapters/3.3-variation.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%	RESULTS/ CONCLUSION.
+%----------------------------------------------------------------------------------------
+\newpage
+\input{chapters/4-conclusion.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%	APPENDICES.
+%----------------------------------------------------------------------------------------
+\newpage				% Start at new page.
+\begin{appendices}
+\part*{Appendices}
+\etoctoccontentsline*{appendixplaceholder}{Appendices}{-1}
+\vspace{-1cm}
+\renewcommand{\contentsname}{}
+\localtableofcontents*
+
+
+    %------------------------------------------------------------------------------------
+    %	APPENDIX: MAIN CIRCUIT.
+    %------------------------------------------------------------------------------------
+    \begin{landscape}
+    \section{\label{app:main-circuit}Main electrical circuit of Lab 4}
+    \begin{figure}[h!]
+	\includepdf[pages=1, angle=180]{figures/Lab4-schema.pdf}
+	\end{figure}
+	\end{landscape}
+
+\end{appendices}
+
+
+
+\end{document}
+
+
